@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
@@ -33,12 +33,12 @@ function Login() {
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
         <InputWrapper style={{ marginBottom: '1rem' }}>
-          <Label for="username">Username</Label>
+          <Label for="email">Username</Label>
           <Input
             type="text"
-            value={username}
+            value={email}
             required
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setemail(e.target.value)}
             style={{ width: '100%', padding: '0.5rem' }}
           />
         </InputWrapper>
@@ -92,6 +92,7 @@ const FormWrapper = styled.div`
     width: 300px;
     margin: 0 auto;
     padding: 2rem;
+    border-radius: 6px;
 `;
 
 
