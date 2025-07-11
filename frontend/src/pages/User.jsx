@@ -28,44 +28,52 @@ function User() {
         <h2>Welcome back
           <span>{user?.firstName} {user?.lastName}!</span>
         </h2>
-      <button class="edit-button">Edit Name</button>
+      <EditButton>Edit Name</EditButton>
       </div>
       <Account>
-        <div class="account-content-wrapper">
-          <h3 class="account-title">Argent Bank Checking (x8349)</h3>
-          <AccountAmount>$2,082.79</AccountAmount>
-          <p class="account-amount-description">Available Balance</p>
-        </div>
+        <AccountContent>
+          <AccountTitle>Argent Bank Checking (x8349)</AccountTitle>
+          <Amount>$2,082.79</Amount>
+          <AmountDescription>Available Balance</AmountDescription>
+        </AccountContent>
         <div class="account-content-wrapper cta">
-          <button class="transaction-button">View transactions</button>
+          <TransactionButton>View transactions</TransactionButton>
         </div>
       </Account>
       <Account>
-        <div class="account-content-wrapper">
-          <h3 class="account-title">Argent Bank Savings (x6712)</h3>
-          <AccountAmount>$10,928.42</AccountAmount>
-          <p class="account-amount-description">Available Balance</p>
-        </div>
+        <AccountContent>
+          <AccountTitle>Argent Bank Savings (x6712)</AccountTitle>
+          <Amount>$10,928.42</Amount>
+          <AmountDescription>Available Balance</AmountDescription>
+        </AccountContent>
         <div class="account-content-wrapper cta">
-          <button class="transaction-button">View transactions</button>
+          <TransactionButton>View transactions</TransactionButton>
         </div>
       </Account>
       <Account>
-        <div class="account-content-wrapper">
-          <h3 class="account-title">Argent Bank Credit Card (x8349)</h3>
-          <AccountAmount>$184.30</AccountAmount>
-          <p class="account-amount-description">Current Balance</p>
-        </div>
+        <AccountContent>
+          <AccountTitle>Argent Bank Credit Card (x8349)</AccountTitle>
+          <Amount>$184.30</Amount>
+          <AmountDescription>Current Balance</AmountDescription>
+        </AccountContent>
         <div class="account-content-wrapper cta">
-          <button class="transaction-button">View transactions</button>
+          <TransactionButton>View transactions</TransactionButton>
         </div>
       </Account>
     </main>
   );
 }
 
-export default User();
+export default User;
 
+
+const EditButton = styled.button`
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+`;
 
 
 const Account = styled.section` 
@@ -83,42 +91,30 @@ const Account = styled.section`
   margin-bottom: 2rem;
 `;
 
-const AccountAmount = styled.p` {
+const Amount = styled.p` {
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
 `;
 
-.account-amount-description {
+const AmountDescription = styled.p` {
   margin: 0;
-}
+`;
 
-.account-title {
+
+const AccountContent = styled.div` {
+  width: 100%;
+  flex: 1;
+`;
+
+const AccountTitle = styled.h3` {
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: normal;
-}
+`;
 
-.account-content-wrapper {
-  width: 100%;
-  flex: 1;
-}
-
-.edit-button {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.header {
-  color: #fff;
-  margin-bottom: 2rem;
-}
-
-.transaction-button {
+const TransactionButton = styled.button` {
   display: block;
   width: 100%;
   padding: 8px;
@@ -128,7 +124,9 @@ const AccountAmount = styled.p` {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
-}
+`;
+
+/*
 
 @media (min-width: 720px) {
   .account {
@@ -143,3 +141,4 @@ const AccountAmount = styled.p` {
     width: 200px;
   }
 }
+  */
