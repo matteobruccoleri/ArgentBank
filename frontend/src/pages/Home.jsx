@@ -42,7 +42,6 @@ function Home() {
 export default Home;
 
 // Styled components
-
 const Features = styled.section`
   display: flex;
   flex-direction: column;

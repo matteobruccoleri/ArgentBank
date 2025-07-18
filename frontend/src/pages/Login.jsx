@@ -4,23 +4,19 @@ import { login } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
-
 function Login() {
-  const [email, setemail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { token, loading, error } = useSelector((state) => state.auth);
 
-  // Gérer la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
   };
 
-  // Rediriger vers /profile si le token est présent
   useEffect(() => {
     if (token) {
       navigate('/profile');
@@ -29,73 +25,58 @@ function Login() {
 
   return (
     <BackgroundDark>
-    <FormWrapper>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <InputWrapper style={{ marginBottom: '1rem' }}>
-          <Label for="email">Username</Label>
-          <Input
-            type="text"
-            value={email}
-            required
-            onChange={(e) => setemail(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-          />
-        </InputWrapper>
-        <InputWrapper style={{ marginBottom: '1rem' }}>
-          <Label>Password</Label>
-          <Input
-            type="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-          />
-        </InputWrapper>
-          <InputRemember>
-            <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
-          </InputRemember>
-        <Submit type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem' }}>
-          {loading ? 'Connexion...' : 'Sign in'}
-        </Submit>
-      </form>
+      <FormWrapper>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit}>
+          <InputWrapper>
+            <Label htmlFor="email">Username</Label>
+            <Input
+              type="text"
+              id="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </InputWrapper>
 
-      {/* Messages d'état */}
-      {error && <p style={{ color: 'red', marginTop: '1rem' }}>❌ {error}</p>}
-    </FormWrapper>
-</BackgroundDark>
+          <InputWrapper>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="password"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </InputWrapper>
 
+          <Submit type="submit" disabled={loading}>
+            {loading ? 'Connexion...' : 'Sign in'}
+          </Submit>
+        </form>
+
+        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+      </FormWrapper>
+    </BackgroundDark>
   );
 }
+
 export default Login;
 
-// Styled components
+// Styled Component
 const BackgroundDark = styled.div`
   background-color: #12002b;
   padding: 50px;
 `;
 
-/*
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 920px) {
-    flex-direction: row;
-  }
-`;
-*/
 const FormWrapper = styled.div`
-    box-sizing: border-box;
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    padding: 2rem;
-    border-radius: 6px;
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 6px;
 `;
-
-
 
 const InputWrapper = styled.div`
   display: flex;
@@ -115,12 +96,7 @@ const Input = styled.input`
   border: 1px solid rgb(118, 118, 118);
 `;
 
-const InputRemember = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-
-const Submit = styled.button` 
+const Submit = styled.button`
   display: block;
   width: 100%;
   padding: 8px;
@@ -135,8 +111,6 @@ const Submit = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color:rgb(43, 195, 139);
+    background-color: rgb(43, 195, 139);
   }
 `;
-
-
