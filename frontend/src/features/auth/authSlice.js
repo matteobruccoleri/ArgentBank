@@ -1,44 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import userService from "../../services/userService";
 
-const API_URL = 'http://localhost:3001/api/v1/user';
-
-// 🔐 Connexion de l'utilisateur
-export const login = createAsyncThunk('auth/login', async ({ email, password }, thunkAPI) => {
-  try {
-    const response = await axios.post(`${API_URL}/login`, { email, password });
-    return response.data.body.token;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(
-      error.response?.data?.message || 'Échec de la connexion'
-    );
-  }
-});
-
-// 👤 Récupération du profil utilisateur
-export const fetchUserProfile = createAsyncThunk(
-  'auth/fetchUserProfile',
-  async (token, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/profile`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      return response.data.body;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Impossible de charger le profil'
-      );
-    }
-  }
-);
-
-// 🔧 État initial
 const initialState = {
   token: null,
   user: null,
@@ -46,9 +8,40 @@ const initialState = {
   error: null,
 };
 
-// 🧠 Slice principal
+// 🔐 Connexion
+export const login = createAsyncThunk("auth/login", async ({ email, password }, thunkAPI) => {
+  try {
+    return await userService.login(email, password);
+  } catch {
+    return thunkAPI.rejectWithValue("Échec de la connexion");
+  }
+});
+
+// 👤 Récupération profil
+export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  try {
+    return await userService.getUser(state.auth.token);
+  } catch {
+    return thunkAPI.rejectWithValue("Impossible de charger le profil");
+  }
+});
+
+// ✏️ Mise à jour profil
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async ({ firstName, lastName }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    try {
+      return await userService.updateUser(state.auth.token, firstName, lastName);
+    } catch {
+      return thunkAPI.rejectWithValue("Erreur lors de la mise à jour");
+    }
+  }
+);
+
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     logout: (state) => {
@@ -70,7 +63,6 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.token = null;
         state.error = action.payload;
       })
 
@@ -85,7 +77,20 @@ const authSlice = createSlice({
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.loading = false;
-        state.user = null;
+        state.error = action.payload;
+      })
+
+      // ✏️ updateUser
+      .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload; // ✅ On remplace directement l'utilisateur
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   },
