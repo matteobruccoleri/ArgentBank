@@ -26,7 +26,7 @@ function Login() {
   return (
     <BackgroundDark>
       <FormWrapper>
-        <h1>Sign In</h1>
+        <FormTitle>Sign In</FormTitle>
         <form onSubmit={handleSubmit}>
           <InputWrapper>
             <Label htmlFor="email">Username</Label>
@@ -66,16 +66,36 @@ export default Login;
 // Styled Component
 const BackgroundDark = styled.div`
   background-color: #12002b;
-  padding: 50px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 920px) {
+    padding: 50px;
+  }
 `;
 
 const FormWrapper = styled.div`
   box-sizing: border-box;
   background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 10%;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   gap: 20px;
+
+  @media (min-width: 425px) {
+    padding: 2rem;
+    width: 300px;
+  }
+`;
+
+const FormTitle = styled.h1`
+  font-size: 1.5em;
 `;
 
 const InputWrapper = styled.div`
@@ -94,6 +114,7 @@ const Input = styled.input`
   font-size: 1.2rem;
   border-radius: 4px;
   border: 1px solid rgb(118, 118, 118);
+  width: 100%;
 `;
 
 const Submit = styled.button`

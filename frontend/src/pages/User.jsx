@@ -90,7 +90,8 @@ const EditButton = styled.button`
 
 const Account = styled.section` 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   border: 1px solid black;
@@ -102,7 +103,8 @@ const Account = styled.section`
   text-align: left;
 
   @media (min-width: 768px) {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -117,15 +119,14 @@ const AmountDescription = styled.p`
 `;
 
 const AccountContent = styled.div`
-  width: 100%;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
   }
 `;
 const AccountTitle = styled.h3`

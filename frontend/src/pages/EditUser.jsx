@@ -150,9 +150,10 @@ const CancelButton = styled.button`
   width: 100px;
 `;
 
-const Account = styled.section`
+const Account = styled.section` 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   border: 1px solid black;
@@ -162,8 +163,12 @@ const Account = styled.section`
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
-`;
 
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
 const Amount = styled.p`
   margin: 0;
   font-size: 2.5rem;
@@ -175,15 +180,14 @@ const AmountDescription = styled.p`
 `;
 
 const AccountContent = styled.div`
-  width: 100%;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
   }
 `;
 
@@ -196,12 +200,11 @@ const AccountTitle = styled.h3`
 
 const TransactionButton = styled.button`
   display: block;
-  width: max-content;
-  padding: 8px;
+  padding: 8px 16px;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1rem;
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
 `;
+
