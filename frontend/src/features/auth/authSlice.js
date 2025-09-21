@@ -8,16 +8,18 @@ const initialState = {
   error: null,
 };
 
-// 🔐 Connexion
-export const login = createAsyncThunk("auth/login", async ({ email, password }, thunkAPI) => {
-  try {
-    return await userService.login(email, password);
-  } catch {
-    return thunkAPI.rejectWithValue("Échec de la connexion");
+// Connexion
+export const login = createAsyncThunk("auth/login",
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      return await userService.login(email, password);
+    } catch (e) {
+      return rejectWithValue(e.message || "Échec de la connexion");
+    }
   }
-});
+);
 
-// 👤 Récupération profil
+// Récupération profil
 export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   try {
@@ -27,7 +29,7 @@ export const fetchUserProfile = createAsyncThunk("auth/fetchUserProfile", async 
   }
 });
 
-// ✏️ Mise à jour profil
+// Mise à jour profil
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async ({ firstName, lastName }, thunkAPI) => {
@@ -52,7 +54,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // 🔄 login
+      // login
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -66,7 +68,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      // 👤 fetchUserProfile
+      // fetchUserProfile
       .addCase(fetchUserProfile.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -80,7 +82,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      // ✏️ updateUser
+      // updateUser
       .addCase(updateUser.pending, (state) => {
         state.loading = true;
         state.error = null;
