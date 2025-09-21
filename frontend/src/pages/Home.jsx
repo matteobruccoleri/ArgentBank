@@ -11,7 +11,7 @@ function Home() {
     <main>
       <Hero />
       <Features>
-        <h2 class="sr-only">Features</h2>
+        <TitleHidden>Features</TitleHidden>
         <Item>
           <Icon src={iconChat} alt="Chat Icon" />
           <Title>You are our #1 priority</Title>
@@ -49,6 +49,20 @@ const Features = styled.section`
   @media (min-width: 920px) {
     flex-direction: row;
   }
+`;
+
+const TitleHidden = styled.h1`
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidde !important;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 `;
 
 const Item = styled.div`

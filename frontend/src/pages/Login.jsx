@@ -49,7 +49,10 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputWrapper>
-
+          <RememberWrapper>
+            <RememberCkeckbox type="checkbox" id="remember-me" />
+            <RememberLabel htmlFor="remember">Remember me</RememberLabel>
+          </RememberWrapper>
           <Submit type="submit" disabled={loading}>
             {loading ? 'Connexion...' : 'Sign in'}
           </Submit>
@@ -105,6 +108,20 @@ const InputWrapper = styled.div`
   text-align: left;
   margin-bottom: 1rem;
 `;
+
+const RememberWrapper = styled.div`
+  display: flex;
+  text-align: left;
+  gap: 10px;
+  font-weight: 400;
+`;
+
+const RememberCkeckbox = styled.input`
+  width: auto;
+`
+const RememberLabel = styled.label`
+  font-weight: 400;
+`
 
 const Label = styled.label`
   font-weight: bold;

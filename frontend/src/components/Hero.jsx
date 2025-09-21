@@ -7,7 +7,7 @@ function Hero() {
             <HeroWrapper>
                 <Content>
                     <div>
-                        <h2 class="sr-only">Promoted Content</h2>
+                        <TitleHidden>Promoted Content</TitleHidden>
                         <Subtitle>No fees.</Subtitle>
                         <Subtitle>No minimum deposit.</Subtitle>
                         <Subtitle>High interest rates.</Subtitle>
@@ -35,7 +35,6 @@ const HeroWrapper = styled.div`
   }
 `;
 
-
 const Content = styled.section`
   position: absolute;
   top: 2rem;
@@ -58,6 +57,20 @@ const Content = styled.section`
     transform: translateX(0%);
   }
 `;
+
+const TitleHidden = styled.h2 `
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidde !important;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+`
 
 const Subtitle = styled.p`
   font-weight: bold;
