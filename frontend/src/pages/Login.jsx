@@ -70,7 +70,8 @@ const BackgroundDark = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  height: 100%;
+  
   @media (min-width: 920px) {
     padding: 50px;
   }
