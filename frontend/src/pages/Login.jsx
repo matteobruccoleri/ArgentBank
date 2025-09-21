@@ -4,6 +4,8 @@ import { login } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
+import iconUser from '../assets/icons/icon-user.svg';
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +28,7 @@ function Login() {
   return (
     <BackgroundDark>
       <FormWrapper>
+        <IconUser src={iconUser} alt="icon user"/>
         <FormTitle>Sign In</FormTitle>
         <form onSubmit={handleSubmit}>
           <InputWrapper>
@@ -96,6 +99,13 @@ const FormWrapper = styled.div`
     padding: 2rem;
     width: 300px;
   }
+`;
+
+const IconUser = styled.img`
+    height: 25px;
+    background-color: #12002b;
+    border-radius: 50%;
+    padding: 5px;
 `;
 
 const FormTitle = styled.h1`
