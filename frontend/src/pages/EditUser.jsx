@@ -147,6 +147,11 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   gap: 10px;
   width: 100%;
+  
+  @media (min-width: 425px) {
+    width: max-content;
+  }
+
 `;
 
 const SaveButton = styled.button`
