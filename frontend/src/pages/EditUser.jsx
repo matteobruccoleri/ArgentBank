@@ -103,11 +103,16 @@ const UsernameWrapper = styled.div`
 `;
 
 const Form = styled.form`
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  width: 100%;
+
+  @media (min-width: 425px) {
+    width: max-content;
+  }
 `;
 
 const UserTitle = styled.h1`
@@ -116,20 +121,32 @@ const UserTitle = styled.h1`
 
 const InputWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 10px;
+  width: 100%;
+
+  @media (min-width: 425px) {
+    width: 80%;
+    flex-direction: row;
+  }
 `;
 
 const Input = styled.input`
   flex: 1;
   padding: 0.5rem;
   font-size: 1rem;
-  max-width: 200px;
+  width: 100%;
+
+  @media (min-width: 425px) {
+    width: 50%;
+  }
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
+  width: 100%;
 `;
 
 const SaveButton = styled.button`
@@ -138,7 +155,11 @@ const SaveButton = styled.button`
   padding: 8px 12px;
   border: none;
   cursor: pointer;
-  width: 100px;
+  flex: 1 0 0;
+
+  @media (min-width: 425px) {
+    width: 100px;
+  }
 `;
 
 const CancelButton = styled.button`
@@ -147,7 +168,11 @@ const CancelButton = styled.button`
   border: 1px solid #00bc77;
   padding: 8px 12px;
   cursor: pointer;
-  width: 100px;
+  flex: 1 0 0;
+
+  @media (min-width: 425px) {
+    width: 100px;
+  }
 `;
 
 const Account = styled.section` 
@@ -158,11 +183,15 @@ const Account = styled.section`
   gap: 20px;
   border: 1px solid black;
   background-color: #fff;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
+
+  @media (min-width: 425px) {
+    width: 80%;
+  }
 
   @media (min-width: 768px) {
     flex-direction: row;

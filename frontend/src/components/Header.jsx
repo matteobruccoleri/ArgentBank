@@ -53,14 +53,21 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 5px 10px;
   background-color: #fff;
+
+  @media (min-width: 375px) {
+    padding: 5px 20px;
+  }
 `;
 
 const StyledHeaderNav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
+  @media (min-width: 375px) {
+    gap: 15px;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -70,17 +77,28 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-weight: bold;
   color: #2c3e50;
+  font-size: 12px;
 
   &:hover {
     text-decoration: underline;
   }
+
+  @media (min-width: 375px) {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Logo = styled.img`
-  width : 150px;
+  width : 130px;
+  @media (min-width: 375px) {
+    width: 150px;
+  }
   @media (min-width: 920px) {
     width: 200px;
-  }
+  }  
 `;
 
 const IconUser = styled.img`

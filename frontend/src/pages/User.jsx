@@ -96,11 +96,15 @@ const Account = styled.section`
   gap: 20px;
   border: 1px solid black;
   background-color: #fff;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
+
+  @media (min-width: 425px) {
+    width: 80%;
+  }
 
   @media (min-width: 768px) {
     flex-direction: row;
