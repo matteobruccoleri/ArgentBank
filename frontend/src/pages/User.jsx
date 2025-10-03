@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile } from '../features/auth/authSlice';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function User() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { token, user, loading, error } = useSelector((state) => state.auth);
@@ -13,10 +11,8 @@ function User() {
   useEffect(() => {
     if (!token) {
       navigate('/login');
-    } else {
-      dispatch(fetchUserProfile());
     }
-  }, [token, dispatch, navigate]);
+  }, [token, navigate]);
 
   if (loading) return <p>Chargement du profil...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;

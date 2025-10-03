@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUserProfile, updateUser } from "../features/auth/authSlice";
+import { updateUser } from "../features/auth/authSlice";
 import styled from "styled-components";
 
 function EditUser() {
@@ -15,10 +15,8 @@ function EditUser() {
   useEffect(() => {
     if (!token) {
       navigate("/login");
-    } else {
-      dispatch(fetchUserProfile());
     }
-  }, [token, dispatch, navigate]);
+  }, [token, navigate]);
 
   useEffect(() => {
     if (user) {
@@ -147,7 +145,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   gap: 10px;
   width: 100%;
-  
+
   @media (min-width: 425px) {
     width: max-content;
   }
