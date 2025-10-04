@@ -109,7 +109,7 @@ const Form = styled.form`
   width: 100%;
 
   @media (min-width: 425px) {
-    width: max-content;
+    width: auto;
   }
 `;
 
